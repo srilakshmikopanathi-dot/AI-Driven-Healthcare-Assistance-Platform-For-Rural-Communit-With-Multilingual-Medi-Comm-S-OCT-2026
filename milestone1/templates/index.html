@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multilingual Text to Speech</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef7fa, #f4f7f8);
+            color: #293b49;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 460px;
+            padding: 28px 24px 30px;
+            background: white;
+            border-radius: 13px;
+            box-shadow: 0 12px 35px rgba(34, 61, 74, 0.10);
+        }
+
+        h2 {
+            margin: 0 0 10px;
+            font-size: 20px;
+        }
+
+        .subtitle {
+            margin: 0 0 22px;
+            color: #7b8790;
+            font-size: 12px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            margin-bottom: 16px;
+            padding: 12px;
+            border: 1px solid #d9dfe3;
+            border-radius: 7px;
+            background: white;
+            font-family: inherit;
+            font-size: 13px;
+        }
+
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #218fc5;
+        }
+
+        textarea {
+            height: 115px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #counter {
+            color: #8a969e;
+            font-size: 11px;
+        }
+
+        button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 7px;
+            background: #218fc5;
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.65;
+            cursor: wait;
+        }
+
+        #status {
+            margin-top: 15px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        #audio {
+            display: none;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .error {
+            color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="card">
+        <h2>🔊 Text to Speech</h2>
+        <p class="subtitle">Type in English, Hindi or Telugu</p>
+
+        <label for="language">Language</label>
+
+        <select id="language">
+            <option value="auto">Auto Detect</option>
+            <option value="en-IN">English</option>
+            <option value="hi-IN">Hindi</option>
+            <option value="te-IN">Telugu</option>
+        </select>
+
+        <label for="text">Text</label>
+
+        <textarea
+            id="text"
+            maxlength="2500"
+            placeholder="Enter text here..."
+        ></textarea>
+
+        <div class="bottom">
+            <span id="counter">0 / 2500 characters</span>
+            <button id="speakButton" type="button">▶ Speak</button>
+        </div>
+
+        <div id="status" role="status"></div>
+        <audio id="audio" controls></audio>
+    </main>
+
+    <script>
+        const textBox = document.getElementById("text");
+        const languageBox = document.getElementById("language");
+        const counter = document.getElementById("counter");
+        const speakButton = document.getElementById("speakButton");
+        const statusBox = document.getElementById("status");
+        const audioPlayer = document.getElementById("audio");
+
+        // Update the character counter
+        textBox.addEventListener("input", function () {
+            counter.textContent =
+                `${textBox.value.length} / 2500 characters`;
+        });
+
+        // Send text to Flask and receive generated audio
+        speakButton.addEventListener("click", async function () {
+            const text = textBox.value.trim();
+
+            if (!text) {
+                statusBox.textContent = "Please enter some text first.";
+                statusBox.className = "error";
+                textBox.focus();
+                return;
+            }
+
+            speakButton.disabled = true;
+            speakButton.textContent = "Generating...";
+            statusBox.className = "";
+            statusBox.textContent = "Generating speech with Sarvam AI...";
+
+            audioPlayer.pause();
+            audioPlayer.removeAttribute("src");
+            audioPlayer.style.display = "none";
+
+            try {
+                const response = await fetch("/api/speak", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        language: languageBox.value
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(
+                        errorData.details ||
+                        errorData.error ||
+                        "Speech generation failed."
+                    );
+                }
+
+                const audioBlob = await response.blob();
+                const audioURL = URL.createObjectURL(audioBlob);
+
+                audioPlayer.src = audioURL;
+                audioPlayer.style.display = "block";
+
+                statusBox.textContent =
+                    "Speech generated! Play the audio below.";
+
+                await audioPlayer.play();
+
+            } catch (error) {
+                statusBox.textContent = error.message;
+                statusBox.className = "error";
+            } finally {
+                speakButton.disabled = false;
+                speakButton.textContent = "▶ Speak";
+            }
+        });
+    </script>
+</body>
+</html>

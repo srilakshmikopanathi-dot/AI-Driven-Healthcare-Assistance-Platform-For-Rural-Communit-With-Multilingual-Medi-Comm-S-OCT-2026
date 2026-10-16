@@ -1,0 +1,48 @@
+Image: Sample-prescription-used-as-input-to-the-GUI-developed-in-the-present-work.jpg.jpeg
+Model: OpenAI (gpt-4o)
+==================================================
+
+**Prescription Details:**
+
+- **Form:** DD 1289
+- **Date:** 1 Nov 71
+
+**For:**
+- **Name:** John R. Doe, HM3, USN
+- **Location:** U.S.S. Neverforgotten (DD 178)
+
+**Medical Facility:**
+- **Name:** U.S.S. Neverforgotten (DD 178)
+- **Date:** 23 Jan 99
+
+**Prescription:**
+
+- **Superscription:** ℞
+
+- **Inscription:**
+  - Tr Belladonna 15 ml
+  - Amphogel q.s.ad 120 ml
+
+- **Subscription:**
+  - M & Ft Solution
+
+- **Signa:**
+  - Sig: 5mL t.i.d a.c.
+
+**Additional Information:**
+
+- **Manufacturer:** Wyeth
+- **Lot Number:** P39K106
+- **Expiration Date:** 12/02
+- **Filled By:** KMT
+
+**Signature:**
+- Jack R. Frost
+- LCDR, M.D., USNR
+
+**Prescription Number:**
+- 10072
+
+**Edition Information:**
+- Edition of 1 Jan 60 may be used for
+- S/N 0102-LF-012-6201

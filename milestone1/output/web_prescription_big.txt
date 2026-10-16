@@ -1,0 +1,54 @@
+Image: web_prescription_big.png
+Model: OpenAI (gpt-4o)
+==================================================
+
+**Quest Care Medical Clinic**
+
+**Patient:** Aakruti Kapoor  
+Female, 31 years  
+8097700800  
+Date: 01-05-2019
+
+**Mr. Anil Kumar Sharma**  
+M.D.S. (Pune)  
+Registration No.: A-77363
+
+---
+
+**Complaint:**  
+Full Body Pain, Weakness Feeling
+
+**Observations:**  
+High Body Temperature, Reddish eye
+
+**Investigations Suggested:**  
+- Cratine  
+- CBC Count
+
+**Diagnosis:**  
+Dengue
+
+---
+
+**Rx**
+
+| Medicine         | Dosage | Duration | Measure | Instructions |
+|------------------|--------|----------|---------|--------------|
+| Tab Rantac 150mg | 1-1-1  | 3 days   |         | After Meal   |
+| CAP SM FIBRO     | 1-0-1  | 5 days   |         | [Unclear]    |
+
+---
+
+**Remarks:**  
+Keep measuring body Temp. twice a day.
+
+**Next follow-up date:**  
+Friday May 03, 2019 5:00 PM
+
+---
+
+**Authorised Signature**
+
+---
+
+*This is a computer generated document*

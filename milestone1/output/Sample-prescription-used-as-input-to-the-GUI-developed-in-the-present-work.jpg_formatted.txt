@@ -1,0 +1,24 @@
+PRESCRIPTION DETAILS
+
+Doctor Details:
+- Name: Jack R. Frost
+- Rank and Degree: LCDR, M.D., USNR
+
+Patient Details:
+- Name: John R. Doe, HM3, USN
+- Location: U.S.S. Neverforgotten (DD 178)
+
+Medicine Details:
+- Tr Belladonna: 15 ml
+- Amphogel q.s.ad: 120 ml
+- M & Ft Solution
+- Sig: 5 mL t.i.d a.c.
+
+Other Details:
+- Date: 23 Jan 99
+- Medical Facility: U.S.S. Neverforgotten (DD 178)
+- Manufacturer: Wyeth
+- Lot No: P39K106
+- Exp Date: 12/02
+- Filled By: KMT
+- Prescription Number: 10072

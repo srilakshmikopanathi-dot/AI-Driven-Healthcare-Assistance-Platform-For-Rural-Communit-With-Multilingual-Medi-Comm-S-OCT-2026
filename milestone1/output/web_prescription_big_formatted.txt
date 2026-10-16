@@ -1,0 +1,34 @@
+PRESCRIPTION DETAILS
+
+Doctor Details:
+Mr. Anil Kumar Sharma  
+M.D.S. (Pune)  
+Registration No.: A-77363  
+
+Patient Details:
+Name: Aakruti Kapoor  
+Gender: Female  
+Age: 31 years  
+Contact: 8097700800  
+Date: 01-05-2019  
+
+Medicine Details:
+1. Medicine: Tab Rantac 150mg  
+   Dosage: 1-1-1  
+   Duration: 3 days  
+   Instructions: After Meal  
+
+2. Medicine: CAP SM FIBRO  
+   Dosage: 1-0-1  
+   Duration: 5 days  
+   Instructions: [Unclear]  
+
+Other Details:
+Complaint: Full Body Pain, Weakness Feeling  
+Observations: High Body Temperature, Reddish eye  
+Investigations Suggested:  
+- Cratine  
+- CBC Count  
+Diagnosis: Dengue  
+Remarks: Keep measuring body Temp. twice a day.  
+Next follow-up date: Friday May 03, 2019 5:00 PM  

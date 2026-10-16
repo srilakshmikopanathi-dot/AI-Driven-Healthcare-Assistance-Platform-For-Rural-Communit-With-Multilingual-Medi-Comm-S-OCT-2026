@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5 - Speech to Text</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #f0f5f8;
+            color: #293b49;
+        }
+
+        main {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 28px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px #00000010;
+        }
+
+        h1 { font-size: 25px; }
+
+        p { line-height: 1.6; color: #596875; }
+
+        form {
+            margin-top: 24px;
+            padding: 20px;
+            background: #f7fafc;
+            border: 1px solid #dce5eb;
+            border-radius: 10px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            margin: 18px 0;
+        }
+
+        button {
+            background: #218fc5;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:disabled { opacity: 0.6; }
+
+        .message {
+            margin-top: 20px;
+            padding: 12px;
+            background: #edf7ff;
+            border-radius: 7px;
+            overflow-wrap: anywhere;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 220px;
+            margin-top: 10px;
+            padding: 12px;
+            border: 1px solid #d5dfe5;
+            border-radius: 8px;
+            font: 14px/1.6 Arial, sans-serif;
+        }
+
+        .hint { font-size: 13px; }
+    </style>
+</head>
+
+<body>
+<main>
+    <h1>🎙️ Speech to Text & Document Reader</h1>
+
+    <p>
+        Upload an audio file to convert speech into text, or upload
+        a document to extract its text. The result is saved as a
+        text file in the project's output folder.
+    </p>
+
+    <form method="POST" enctype="multipart/form-data" id="uploadForm">
+        <label for="file"><strong>Select an audio or document file</strong></label>
+
+        <input
+            type="file"
+            id="file"
+            name="file"
+            accept=".wav,.mp3,.m4a,.mp4,.aac,.flac,.ogg,.webm,.pdf,.docx,.txt,.ppt,.pptx"
+            required
+        >
+
+        <p class="hint">
+            Supported: WAV, MP3, M4A, PDF, DOCX, TXT, PPT and PPTX.
+            Maximum upload size: 25 MB.
+        </p>
+
+        <button type="submit" id="submitButton">Process File</button>
+    </form>
+
+    {% if message %}
+        <div class="message" role="status">
+            <strong>{{ message }}</strong>
+
+            {% if saved_file %}
+                <p>Saved output: <code>{{ saved_file }}</code></p>
+                <p>Folder: <code>milestone1/output/</code></p>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {% if transcript %}
+        <h2>Extracted Text</h2>
+        <textarea readonly>{{ transcript }}</textarea>
+    {% endif %}
+</main>
+
+<script>
+    document.getElementById("uploadForm").addEventListener("submit", function () {
+        const button = document.getElementById("submitButton");
+        button.disabled = true;
+        button.textContent = "Processing...";
+    });
+</script>
+</body>
+</html>
